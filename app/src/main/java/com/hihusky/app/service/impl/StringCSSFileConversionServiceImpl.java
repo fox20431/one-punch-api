@@ -21,7 +21,7 @@ public class StringCSSFileConversionServiceImpl implements StringCSSFileConversi
         String result = "@font-face { \n" +
                 "\tfont-family:" + name + ";\n" +
                 "\tfont-style: normal;\n" +
-                "\tsrc: url('" + cssBase64Text + "') format('"+ ext +"');\n" +
+                "\tsrc: url('data:font/" + ext + ";charset=utf-8;base64," + cssBase64Text + "') format('"+ ext +"');\n" +
                 "}\n";
         return result;
     }
