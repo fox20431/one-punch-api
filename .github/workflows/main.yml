@@ -13,6 +13,15 @@ jobs:
       packages: write
 
     steps:
+      - uses: actions/cache@v3
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
       - uses: actions/checkout@v3
 
       - name: Set up JDK 11
@@ -38,5 +47,5 @@ jobs:
 
       - name: Rerun in Server
         run: |
-          ssh -o StrictHostKeyChecking=no -i ./id_rsa root@warrior.hihusky.com "lsof -i :8080 | awk '{system("kill -9 " $2)}'"
-          ssh -o StrictHostKeyChecking=no -i ./id_rsa root@warrior.hihusky.com "nohup java -jar app.jar &"
+          ssh -o StrictHostKeyChecking=no -i ./id_rsa root@warrior.hihusky.com "fuser -k 8080/tcp"
+          ssh -o StrictHostKeyChecking=no -i ./id_rsa root@warrior.hihusky.com "nohup java -jar app.jar > /dev/null &"
