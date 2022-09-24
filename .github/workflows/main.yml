@@ -48,4 +48,4 @@ jobs:
       - name: Rerun in Server
         run: |
           ssh -o StrictHostKeyChecking=no -i ./id_rsa root@warrior.hihusky.com "fuser -k 8080/tcp"
-          ssh -o StrictHostKeyChecking=no -i ./id_rsa root@warrior.hihusky.com "nohup java -jar app.jar > /dev/null &"
+          ssh -o StrictHostKeyChecking=no -i ./id_rsa root@warrior.hihusky.com "nohup java -jar app.jar > /dev/null 2>&1 &"
