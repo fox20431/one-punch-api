@@ -43,9 +43,9 @@ jobs:
 
       - name: Transfer
         run: |
-          scp -o StrictHostKeyChecking=no -i ./id_rsa -r ./app/build/libs/app.jar root@warrior.hihusky.com:~/
+          scp -o StrictHostKeyChecking=no -i ./id_rsa -r ./app/build/libs/app.jar root@warrior.hihusky.com:~/one-punch-api.jar
 
       - name: Rerun in Server
         run: |
           ssh -o StrictHostKeyChecking=no -i ./id_rsa root@warrior.hihusky.com "fuser -k 8080/tcp"
-          ssh -o StrictHostKeyChecking=no -i ./id_rsa root@warrior.hihusky.com "nohup java -jar app.jar > /dev/null 2>&1 &"
+          ssh -o StrictHostKeyChecking=no -i ./id_rsa root@warrior.hihusky.com "nohup java -jar one-punch-api.jar > /dev/null 2>&1 &"
