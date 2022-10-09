@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class HelloController {
-    @GetMapping("/hello")
+    @GetMapping("/")
     String greet() {
-        return "Hello";
+        return "Hello, welcome the ONE PUNCH API.";
     }
 }
