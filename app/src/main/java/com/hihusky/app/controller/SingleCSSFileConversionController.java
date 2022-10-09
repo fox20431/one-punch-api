@@ -17,7 +17,7 @@ public class SingleCSSFileConversionController {
         this.stringCSSFileConversionService = stringCSSFileConversionService;
     }
 
-    @PostMapping(value = "/css-file", consumes = {"multipart/form-data"})
+    @PostMapping(value = "/css_file", consumes = {"multipart/form-data"})
     public String convertFontFileToString(
             @RequestPart(value = "file") MultipartFile file
     ) throws IOException {
