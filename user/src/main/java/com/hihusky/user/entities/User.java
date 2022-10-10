@@ -1,4 +1,4 @@
-package com.hihusky.user.po;
+package com.hihusky.user.entities;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;

@@ -1,6 +1,6 @@
 package com.hihusky.user.repositories;
 
-import com.hihusky.user.po.User;
+import com.hihusky.user.entities.User;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 

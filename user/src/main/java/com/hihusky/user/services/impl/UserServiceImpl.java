@@ -1,6 +1,6 @@
 package com.hihusky.user.services.impl;
 
-import com.hihusky.user.po.User;
+import com.hihusky.user.entities.User;
 import com.hihusky.user.repositories.UserRepository;
 import com.hihusky.user.services.UserService;
 import com.hihusky.user.utils.BCrypt;
