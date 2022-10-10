@@ -1,6 +1,6 @@
-package com.hihusky.app.controller;
+package com.hihusky.app.controllers;
 
-import com.hihusky.app.service.StringCSSFileConversionService;
+import com.hihusky.app.services.StringCSSFileConversionService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;

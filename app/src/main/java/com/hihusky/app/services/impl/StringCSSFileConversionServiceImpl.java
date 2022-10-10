@@ -1,7 +1,7 @@
-package com.hihusky.app.service.impl;
+package com.hihusky.app.services.impl;
 
 import com.google.common.io.Files;
-import com.hihusky.app.service.StringCSSFileConversionService;
+import com.hihusky.app.services.StringCSSFileConversionService;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 

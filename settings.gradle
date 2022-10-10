@@ -1,2 +1,3 @@
 rootProject.name = 'one-punch-api'
+include 'user'
 include 'app'

@@ -1,4 +1,4 @@
-package com.hihusky.app.service;
+package com.hihusky.app.services;
 
 import org.springframework.web.multipart.MultipartFile;
 
