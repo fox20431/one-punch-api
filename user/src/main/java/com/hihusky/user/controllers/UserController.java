@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
+import javax.management.RuntimeErrorException;
+
 @RestController
 public class UserController {
 
@@ -40,7 +42,7 @@ public class UserController {
 			map.put("token", token);
 			return map;
 		} else {
-			throw new InvalidUsernameOrPasswordException();
+			throw new RuntimeException("Invalid username or password!");
 		}
 	}
 

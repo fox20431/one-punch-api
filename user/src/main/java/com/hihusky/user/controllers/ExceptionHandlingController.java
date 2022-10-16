@@ -14,19 +14,29 @@ import java.util.Map;
 
 @RestControllerAdvice
 public class ExceptionHandlingController {
-    @ExceptionHandler(InvalidUsernameOrPasswordException.class)
-    @ResponseStatus(HttpStatus.CONFLICT)
-    public Map<String, Object> handleUsernameDuplicationException(InvalidUsernameOrPasswordException e) {
-        Map<String, Object> map = new HashMap<String, Object>();
-        map.put("msg", "Invalid username and password");
-        return map;
-    }
 
-    @ExceptionHandler(JWTDecodeException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public Map<String, Object> handleJWTDecodeException(JWTDecodeException e) {
-        Map<String, Object> map = new HashMap<String, Object>();
-        map.put("msg", "Invalid JWT token.");
-        return map;
-    }
+	private Map<String, Object> pkgExceptionMsgIntoMap(RuntimeException e) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("msg", e.getMessage());
+		return map;
+	}
+
+	@ExceptionHandler(InvalidUsernameOrPasswordException.class)
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	public Map<String, Object> handleNormalException(RuntimeException e) {
+		return pkgExceptionMsgIntoMap(e);
+	}
+
+	@ExceptionHandler(InvalidUsernameOrPasswordException.class)
+	@ResponseStatus(HttpStatus.CONFLICT)
+	public Map<String, Object> handleException(InvalidUsernameOrPasswordException e) {
+		return pkgExceptionMsgIntoMap(e);
+
+	}
+
+	@ExceptionHandler(JWTDecodeException.class)
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	public Map<String, Object> handleJWTDecodeException(JWTDecodeException e) {
+		return pkgExceptionMsgIntoMap(e);
+	}
 }
