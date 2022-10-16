@@ -6,7 +6,7 @@ spring:
     jdbc:
       platform: postgres
   datasource:
-    url: jdbc:postgresql://localhost:5432/one_punch?currentSchema=user
+    url: jdbc:postgresql://localhost:5432/one_punch?currentSchema=usr
     username: root
     password: root
 
