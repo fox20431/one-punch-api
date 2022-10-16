@@ -3,7 +3,7 @@ name: One Punch
 on:
   push:
     branches:
-      - "main"
+      - "prod"
 
 jobs:
   build:

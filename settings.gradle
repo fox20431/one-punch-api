@@ -1,3 +1,4 @@
 rootProject.name = 'one-punch-api'
 include 'user'
-include 'app'
+include 'toy-box'
+include 'jp-lang'
