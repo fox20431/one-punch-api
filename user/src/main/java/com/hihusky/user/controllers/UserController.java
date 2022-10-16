@@ -6,7 +6,9 @@ import com.hihusky.user.entities.User;
 import com.hihusky.user.services.UserService;
 import com.hihusky.user.utils.BCrypt;
 import com.hihusky.user.utils.Token;
+
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -20,6 +22,15 @@ public class UserController {
 		this.userService = userService;
 	}
 
+	@PostMapping(value = "/users", consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseStatus(HttpStatus.CREATED)
+	User register(@RequestBody User user) {
+		String encodedPassword = BCrypt.hashPassword(user.getPassword(), BCrypt.genSalt());
+		user.setPassword(encodedPassword);
+		User dbUser = userService.register(user);
+		return dbUser;
+	}
+
 	@PostMapping(value = "/login", consumes = "application/x-www-form-urlencoded")
 	@ResponseStatus(HttpStatus.OK)
 	Map<String, String> login(@RequestParam("username") String username, @RequestParam("password") String password) {
@@ -31,17 +42,6 @@ public class UserController {
 		} else {
 			throw new InvalidUsernameOrPasswordException();
 		}
-	}
-
-	@PostMapping(value = "/users", consumes = "application/x-www-form-urlencoded")
-	@ResponseStatus(HttpStatus.OK)
-	String register(@RequestParam("username") String username, @RequestParam("password") String password) {
-		String encodedPassword = BCrypt.hashPassword(password, BCrypt.genSalt());
-		User user = new User();
-		user.setUsername(username);
-		user.setPassword(encodedPassword);
-		userService.register(user);
-		return "create successfully!";
 	}
 
 	@PostMapping(value = "/parse_token", consumes = "application/x-www-form-urlencoded")
