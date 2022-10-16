@@ -21,7 +21,7 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public boolean login(String username, String password) {
+	public boolean checkPassword(String username, String password) {
 		User user = userRepository.findOneByUsername(username).get();
 		return BCrypt.checkPassword(password, user.getPassword());
 	}

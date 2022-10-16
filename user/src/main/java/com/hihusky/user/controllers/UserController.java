@@ -33,9 +33,9 @@ public class UserController {
 
 	@PostMapping(value = "/login", consumes = "application/x-www-form-urlencoded")
 	@ResponseStatus(HttpStatus.OK)
-	Map<String, String> login(@RequestParam("username") String username, @RequestParam("password") String password) {
-		if (userService.login(username, password)) {
-			String token = Token.generateToken(username);
+	Map<String, String> login(@RequestBody User user) {
+		if (userService.checkPassword(user.getUsername(), user.getPassword())) {
+			String token = Token.generateToken(user.getUsername());
 			Map<String, String> map = new HashMap<>();
 			map.put("token", token);
 			return map;
@@ -43,6 +43,7 @@ public class UserController {
 			throw new InvalidUsernameOrPasswordException();
 		}
 	}
+
 
 	@PostMapping(value = "/parse_token", consumes = "application/x-www-form-urlencoded")
 	Map<String, String> parseToken(@RequestParam("token")String token) {
